@@ -9,3 +9,78 @@
 a {
     text-decoration: none;
 }
+
+.container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: url(../images/bg.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container .cloud1 {
+    position: absolute;
+    top: 60px;
+    animation: cloudOne infinite 30s linear;
+}
+
+@keyframes cloudOne {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.container .cloud2 {
+    position: absolute;
+    top: -160px;
+    animation: cloudTwo infinite 45s linear;
+}
+
+@keyframes cloudTwo {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.container .cloud3 {
+    position: absolute;
+    top: -120px;
+    animation: cloudThree infinite 55s linear;
+}
+
+@keyframes cloudThree {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.container .cloud4 {
+    position: absolute;
+    top: 60px;
+    animation: cloudFour infinite 25s linear;
+}
+
+@keyframes cloudFour {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
