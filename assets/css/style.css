@@ -1,86 +1,276 @@
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    list-style: none;
-    list-style-type: none;
 }
-
-a {
-    text-decoration: none;
+body {
+    overflow: hidden;
+    transition: background 1s ease-in-out;
 }
-
 .container {
+    position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    position: relative;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: url(../images/bg.jpg) 50% 50% no-repeat;
     background-size: cover;
 }
 
-img {
+/* SKY BACKGROUND (Day/Night transition) */
+.sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(85, 175, 211, 0.8) 0%, #cbe8ff 100%);
+    transition: background 3s ease-in-out;
+    z-index: 0;
+}
+body.night .sky {
+    background: linear-gradient(to top, #021024 0%, #0b2348 100%);
+}
+
+/* SUN */
+.sun {
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff176 0%, #fbc02d 70%);
+    box-shadow: 0 0 50px #fff59d;
+    animation: sunMove 60s linear infinite;
+    z-index: 1;
+}
+@keyframes sunMove {
+    0% {
+        transform: translateX(-10vw) translateY(0);
+    }
+    50% {
+        transform: translateX(50vw) translateY(-10vh);
+    }
+    100% {
+        transform: translateX(110vw) translateY(0);
+    }
+}
+
+/* MOON */
+.moon {
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #cfd8dc 0%, #90a4ae 80%);
+    box-shadow: 0 0 40px #b0bec5;
+    opacity: 0;
+    animation: moonMove 60s linear infinite;
+    z-index: 1;
+    transition: opacity 2s ease-in-out;
+}
+body.night .moon {
+    opacity: 1;
+}
+@keyframes moonMove {
+    0% {
+        transform: translateX(-10vw) translateY(0);
+    }
+    50% {
+        transform: translateX(50vw) translateY(-8vh);
+    }
+    100% {
+        transform: translateX(110vw) translateY(0);
+    }
+}
+
+/* CLOUDS */
+.cloud {
+    position: absolute;
+    z-index: 2;
+}
+.cloud img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
-
-.container .cloud1 {
-    position: absolute;
-    top: 60px;
-    animation: cloudOne infinite 30s linear;
+.cloud1 {
+    top: 80px;
+    width: 250px;
+    animation: cloudOne 40s linear infinite;
 }
-
+.cloud2 {
+    top: 160px;
+    width: 300px;
+    animation: cloudTwo 55s linear infinite;
+}
+.cloud3 {
+    top: 50px;
+    width: 200px;
+    animation: cloudThree 70s linear infinite;
+}
+.cloud4 {
+    top: 120px;
+    width: 350px;
+    animation: cloudFour 30s linear infinite;
+}
 @keyframes cloudOne {
     0% {
         transform: translateX(-100%);
     }
     100% {
-        transform: translateX(100%);
+        transform: translateX(110vw);
     }
 }
-
-.container .cloud2 {
-    position: absolute;
-    top: -160px;
-    animation: cloudTwo infinite 45s linear;
-}
-
 @keyframes cloudTwo {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(-120%);
     }
     100% {
-        transform: translateX(100%);
+        transform: translateX(120vw);
     }
 }
-
-.container .cloud3 {
-    position: absolute;
-    top: -120px;
-    animation: cloudThree infinite 55s linear;
-}
-
 @keyframes cloudThree {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(-130%);
     }
     100% {
-        transform: translateX(100%);
+        transform: translateX(130vw);
     }
 }
-
-.container .cloud4 {
-    position: absolute;
-    top: 60px;
-    animation: cloudFour infinite 25s linear;
-}
-
 @keyframes cloudFour {
     0% {
         transform: translateX(-100%);
     }
     100% {
-        transform: translateX(100%);
+        transform: translateX(110vw);
     }
+}
+body.night .cloud img {
+    filter: brightness(0.6);
+}
+
+/* balloon */
+.balloon {
+    position: absolute;
+    top: 30%;
+    left: -10%;
+    width: 80px;
+    animation: balloonFly 25s linear infinite;
+    z-index: 3;
+}
+.balloon img {
+    width: 100%;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+}
+@keyframes balloonFly {
+    0% {
+        transform: translateX(-10vw) translateY(0);
+    }
+    50% {
+        transform: translateX(50vw) translateY(-6vh);
+    }
+    100% {
+        transform: translateX(110vw) translateY(0);
+    }
+}
+body.night .balloon {
+    opacity: 0;
+}
+
+/* TITLE / LOGO */
+.scene-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: 7em;
+    font-weight: 700;
+    color: #2884bd;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px #fff, 0 0 30px #fff;
+    z-index: 5;
+    transition: all 1.5s ease;
+}
+
+body.night .scene-title {
+    color: #b0bec5;
+    text-shadow: none;
+}
+
+/* STARS CANVAS */
+#stars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: transparent;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+body.night #stars {
+    opacity: 1;
+}
+
+/* THEME TIMER */
+.theme-timer {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 2em;
+    font-weight: 600;
+    color: #e0710f;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    z-index: 10;
+    transition: color 2s ease, text-shadow 2s ease;
+}
+
+.theme-timer svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.theme-timer circle {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+}
+
+.bg-ring {
+    stroke: rgba(255, 255, 255, 0.2);
+}
+
+.progress-ring {
+    stroke: #fbc02d;
+    stroke-dasharray: 339.292; /* 2πr (r = 54) */
+    stroke-dashoffset: 0;
+    transition: stroke 1s ease, stroke-dashoffset 0.1s linear;
+}
+
+body.night .theme-timer {
+    color: #90caf9;
+    text-shadow: 0 0 8px rgba(144, 202, 249, 0.8);
+}
+
+body.night .progress-ring {
+    stroke: #64b5f6;
 }

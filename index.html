@@ -5,23 +5,39 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <title>Project</title>
+        <title>City Sky Scene</title>
     </head>
 
     <body>
         <div class="container">
-            <div class="cloud1">
-                <img src="./assets/images/cloud1.png" alt="" />
+            <div class="bg"></div>
+            <div class="sky"></div>
+            <div class="sun"></div>
+            <div class="moon"></div>
+
+            <!-- Clouds -->
+            <div class="cloud cloud1"><img src="./assets/images/cloud1.png" alt="" /></div>
+            <div class="cloud cloud2"><img src="./assets/images/cloud2.png" alt="" /></div>
+            <div class="cloud cloud3"><img src="./assets/images/cloud1.png" alt="" /></div>
+            <div class="cloud cloud4"><img src="./assets/images/cloud2.png" alt="" /></div>
+
+            <!-- balloon -->
+            <div class="balloon"><img src="./assets/images/balloon.png" alt="balloon" /></div>
+
+            <!-- Title -->
+            <h1 class="scene-title" id="scene-title">Sunny Skies</h1>
+
+            <!-- Theme Timer -->
+            <div class="theme-timer">
+                <svg viewBox="0 0 120 120">
+                    <circle class="bg-ring" cx="60" cy="60" r="54" />
+                    <circle class="progress-ring" cx="60" cy="60" r="54" />
+                </svg>
+                <span id="timer-text">20s</span>
             </div>
-            <div class="cloud2">
-                <img src="./assets/images/cloud2.png" alt="" />
-            </div>
-            <div class="cloud3">
-                <img src="./assets/images/cloud1.png" alt="" />
-            </div>
-            <div class="cloud4">
-                <img src="./assets/images/cloud2.png" alt="" />
-            </div>
+
+            <!-- Stars -->
+            <canvas id="stars"></canvas>
         </div>
 
         <script src="./assets/js/main.js"></script>
